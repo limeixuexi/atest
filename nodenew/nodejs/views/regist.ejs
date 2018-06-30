@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"
+    <meta charset="utf-8" />
+    <title>叽喳电影网</title>
+    <style type="text/css">
+      *{padding: 0;margin: 0;}
+      body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
+            
+      /*超链接 可在后面覆盖样式*/
+      a{ text-decoration: none;color: #888;}
+      a:hover{color: #333;}
+      
+      /*网站标题*/
+      header{height: 120px; background: #999;line-height: 120px;background-image: url(images/menu-bg.jpg);}
+      h1{margin-left: 50px;}
+      
+      /*导航容器*/
+      #nav{height: 90px; background: #edf;}
+      /*导航栏*/
+      .header-nav{position: absolute;right: 30px;}
+      .nav-button{ display:inline-block;margin: 20px auto; margin-left: 25px;background: #eee;
+      height: 50px;line-height: 50px;text-align: center;border-radius: 8px;}
+      .nav-button a{font-size: 20px;margin: auto 25px;}
+      .nav-button:after{ clear: both;}
+      .nav-button:hover{background: #333;color: #fff;}
+      .nav-button:hover a{background: #333;color: #fff;}
+      
+      /*当前导航位置*/
+      .active{background: #333;color: #fff;}
+      .active a{background: #333;color: #fff;}
+      
+      /*内容容器*/
+      .container{height: 1000px; background: #edc;}
+      
+      /*container里面的样式 */
+      #div1{
+     	margin: 0 auto;
+     	width:500px;
+     }
+    #form p{
+    	text-align: center;
+    }
+     #p1{
+     	padding-top: 50px;
+     	font-size: 40px;
+     }
+     #username{
+     	height:30px;
+     	font-size: 15px;
+     }
+     #password{
+     	height:30px;
+     	font-size: 15px;
+     }
+     #zc{
+     	width:60px;
+     	height:30px;
+     	font-size: 15px;
+     	line-height: 30px;
+     }
+     #error{
+       margin:0 auto;
+       background:gold;
+       display:none;
+     }
+      /*页脚footer*/
+      footer{ background: #eee; color: #444;height: 50px;text-align: center;line-height: 50px;
+      }
+      footer label{margin-right: 50px;}
+    </style>
+  </head>
+  <body>
+    <header><h1>叽喳电影网</h1></header>
+    <div id="nav">
+    <ul class="header-nav">
+      <li class="nav-button"><a href="/index">首页</a></li>
+      <li class="nav-button"><a href="/moviesee">看看电影</a></li>
+      <li class="nav-button"><a href="/showpl">留言板</a></li>
+      <li class="nav-button"><a href="/contect">联系我们</a></li>
+      <li class="nav-button"><a href="/login">登录</a></li>
+      <li class="nav-button"><a href="/regist">注册</a></li>
+    </ul>
+    </div>
+    <div class="container">
+   		<div id="div1">
+   			<form id="form">
+   				<p id="p1"><b>欢&nbsp;迎&nbsp;注&nbsp;册</b></p></br>
+   				<p ><b>用户名：</b></p></br>
+   				<p ><input type="text" name="username" id="username" placeholder="请输入用户名" /></p></br>
+   				<p ><b>密码：</b></p></br>
+   				<p><input type="password" name="password" id="password" placeholder="请输入密码" /></p></br>
+   				<p><input type="checkbox" name="check" id="check" value="" checked="true"/>我同意</p></br>
+   				<p><button type="button" id="zc" name="zc">注册</button></p>
+   			</form>
+         <div id="error" >用户名被占用</div>
+   		</div>
+    </div>
+    
+    <footer><label>制作方：<a href="#">叽喳.</a></label><a href="#">联系我们</a></footer>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      $("#zc").click(function(){
+          $.post("/doregist",{
+          "username":$("#username").val(),
+          "password":$("#password").val()
+        },function(result){
+            if(result=="1"){
+              alert("注册成功！！");
+              window.location="/showpl";
+            }else if(result=="-1"){
+               alert("用户名已被占用！！");    
+            }
+            else if(result=="-3"){
+              alert("服务器错误！！");   
+            }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    include ../public/includes/head
+    script(type="text/javascript", src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js")
+    | 	  
+    meta(name="viewport", content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0", <meta="", charset="utf-8")
+    | 		
+    title 叽喳电影网
+    | 		
+    //- link(rel="stylesheet", href="../public/css/animate.min.css", type="text/css")
+    |  
+    | 		
+    style(type="text/css").
+      *{padding: 0;margin: 0;}
+      body {width: 100%;height: 100%;margin: 0px;padding: 0px;font-family: sans-serif;background: #edc;}
+      /*超链接 可在后面覆盖样式*/
+      a{ text-decoration: none;color: #888;}
+      a:hover{color: #333;}
+      /*网站标题*/
+      header{overflow: hidden; height: 120px;background: #fdb;line-height: 120px; background-image: url(../img/menu-bg.jpg);}
+      h1{margin-left:50px;}
+      /*标题样式*/
+      .rubberBand{animation-duration: 3s;animation-play-state: running;animation-delay: 2s;}
+      .aa{font-family: 华文隶书;padding-left: 100px;font-size: 30px;color: #f88;}
+      /*导航容器*/
+      #nav{height: 90px; background: #ddd;}
+      /*导航栏*/
+      .header-nav{position: absolute;right: 30px;width: 615px;}
+      .nav-button{ display:inline-block;margin: 20px auto; margin-left: 25px;background: #eee;
+      height: 50px;line-height: 50px;text-align: center;border-radius: 8px;}
+      .nav-button a{font-size: 20px;margin: auto 25px;}
+      .nav-button:after{ clear: both;}
+      .nav-button:hover{background: #333;color: #fff;}
+      .nav-button:hover a{background: #333;color: #fff;}
+      /*当前导航位置*/
+      .active{background: #333;color: #fff;}
+      .active a{background: #333;color: #fff;}
+      /*内容容器*/
+      .container{ display:table;height: 1000px;background: #edc;width: 1040px;margin: auto;}
+      /*container里面的样式*/
+      .img{display:inline}
+  body
+    header
+      .rubberBand.aa
+        h1 叽喳电影
+    | 		
+    #nav
+      ul.header-nav
+        li.nav-button
+          a(href="/index") 首页
+        | 		  
+        li.nav-button.active
+          a(href="/moviesee") 看看电影
+        | 		  
+        li.nav-button
+          a(href="/showpl") 留言板
+        | 		  
+        li.nav-button
+          a(href="/contect") 联系我们
+    | 		
+    .container
+      
+      .row
+        br
+        br  
+        each item in movies
+          .col-md-2
+            .thumbnail
+              
+              a(href="/admin/vedio/#{item._id}")
+                img(src="#{item.poster}",alt="#{item.title}",style="height=200px,width=150px")
+              .caption
+                h4 #{item.title}
+               

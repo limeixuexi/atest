@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"
+    <meta charset="utf-8" />
+    <title>叽喳电影网</title>
+    <style type="text/css">
+      *{padding: 0;margin: 0;}
+      body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
+            
+      /*超链接 可在后面覆盖样式*/
+      a{ text-decoration: none;color: #888;}
+      a:hover{color: #333;}
+      
+      /*网站标题*/
+      header{height: 120px; background: #999;line-height: 120px;background-image: url(images/menu-bg.jpg);}
+      h1{margin-left: 50px;}
+      .rubberBand{animation-duration: 3s;animation-play-state: running;animation-delay: 2s;}
+      .aa{font-family: 华文隶书;padding-left: 100px;font-size: 30px;color: #f88;}
+      /*导航容器*/
+      #nav{height: 90px; background: #edf;}
+      /*导航栏*/
+      .lzw{position: absolute;left:5px;}
+      .header-nav{position: absolute;right: 30px;}
+      .nav-button{ display:inline-block;margin: 20px auto; margin-left: 25px;background: #eee;
+      height: 50px;line-height: 50px;text-align: center;border-radius: 8px;}
+      .nav-button a{font-size: 20px;margin: auto 25px;}
+      .nav-button:after{ clear: both;}
+      .nav-button:hover{background: #333;color: #fff;}
+      .nav-button:hover a{background: #333;color: #fff;}
+      
+      /*当前导航位置*/
+      .active{background: #333;color: #fff;}
+      .active a{background: #333;color: #fff;}
+      
+      /*内容容器*/
+      .container{height: 1000px; background: #edc;}
+      
+      /*container里面的样式*/
+      .div1{
+     	width:100%;
+     	height:100px;
+     	background: thistle;
+     	text-align: center;
+     }
+     .div1 p{
+     	padding-top:10px;
+     }
+       .div2{
+     	width:100%;
+     	height: 150px;
+     	background: thistle;
+     }
+     .div3{
+     	width:70%;
+       margin-left:50px;
+     	/*margin: 0 auto;*/
+     }
+     #text{
+     	width:50%;
+     	height:80px;
+     }
+     #fb{
+     	width:60px;
+     	height: 30px;
+     	line-height: 30px;
+     	background: greenyellow;
+     	border:2px solid greenyellow;
+     	border-radius: 5px;
+     }
+     .div4{
+     		width:70%;
+     		margin-left: 50px;
+     		/*background: thistle;*/
+     		height:118px;
+     		border-bottom: 2px solid thistle;
+     }
+     #xq{
+     	width:60px;
+     	height: 30px;
+     	line-height: 30px;
+     	background: paleturquoise;
+     	border:2px solid gold;
+     	border-radius: 5px;
+     }
+     .fenye {
+     	width: 100px;
+     	height: 30px;
+     	margin-left:50px;
+     	list-style-type: none;
+     }
+     .fenye li{
+     	float:left;
+     	margin-left:10px;
+     }
+      /*页脚footer*/
+      footer{ background: #eee; color: #444;height: 50px;text-align: center;line-height: 50px;
+      }
+      footer label{margin-right: 50px;}
+    </style>
+  </head>
+  <body>
+    <% include components/header.ejs %>
+    <div id="nav">
+    <ul class="header-nav">
+      <li class="nav-button"><a href="/index">首页</a></li>
+      <li class="nav-button"><a href="/moviesee">看看电影</a></li>
+      <li class="nav-button active"><a href="/showpl">留言板</a></li>
+      <li class="nav-button"><a href="/contect">联系我们</a></li> 
+    </ul>
+    <%
+        if(!login){
+    %>
+        <ul class="lzw">
+          <li class="nav-button"><a href="/login">登录</a></li>
+          <li class="nav-button"><a href="/regist">注册</a></li>
+        </ul>
+    <%
+        }else{
+    %>
+          <ul class="lzw">
+          <li class="nav-button"><a href="#">欢迎您!<%=username%></a></li>
+          </ul>
+    <%}%>
+    </div>
+    <div class="container">
+    <%if(!login){%>
+      <div class="div1">
+   			  <p><h2>欢迎注册！！</h2></p>
+   			  <p><h4>请点击左侧上方注册按钮，与我们一起感受电影的魅力，一起畅谈电影的感想！！</h4></p> 			
+   		</div>
+      <%}else{%>
+         <div class="div2">
+          <div class="div3">
+          <P><h3><%=username%></h3></P>
+          <textarea name="text" id="text"></textarea><br>
+          <input type="button" name="fb" id="fb" value="发表" />
+          
+          </div>
+   		  </div>  
+         <div>
+            <ul class="fenye">
+                
+            </ul>
+         </div>
+         <div id="qbpl">
+         </div>
+        
+      <%}%> 
+    </div>
+    
+    <footer><label>制作方：<a href="#">叽喳.</a></label><a href="#">联系我们</a></footer>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="/js/underscore-noflect.js"></script>
+
+    <script type="text/javascript">
+      $("#fb").click(function(){
+          $.post("/postshow",{
+          "text":$("#text").val()
+        },function(result){
+            if(result=="1"){
+              alert("发表成功！！");
+              window.location="/showpl";
+            }else{
+               alert("发表失败！！");    
+            }
+        });
+      });
+    </script>
+    
+    
+    <script type="text/template" id="moban">
+        <div class="div4">
+            <h3>{{=username}}:</h3>
+            <p>{{=text}}</p>
+            <p>{{=datetime}}</p>           
+            <input type="button" name="xq" id="xq" value="查看详情"/>
+            <p><a href="/shanchu?id={{=_id}}" class="sc">删除</a></p>
+            
+        </div>
+    </script>
+
+    
+
+     <script type="text/javascript">
+        $.get("/getplamount",function(result){
+            var amount = parseInt(result);
+            pageamount=Math.ceil(amount/5);
+            for(var i=1;i<=pageamount;i++){
+              $(".fenye").append(" <li ><a href='#'>"+i+"</a></li>");
+            }
+            $(".fenye li:first").addClass("active");
+            $(".fenye li").click(function(){
+              var page=$(this).index();
+              getPage(page);
+              $(this).addClass("active").siblings().removeClass("active");
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        var $qbpl = $("#qbpl");
+        var compiled = _.template($("#moban").html());
+        getPage(0);
+        function getPage(page){
+          $("#qbpl").html("");
+          $.get("/getall?page="+page,function(result){
+            for(var i =0;i<result.r.length;i++){
+                var htmlstring = compiled(result.r[i]);
+              $qbpl.append($(htmlstring));
+            }
+          })      
+        }    
+    </script>
+    
+  </body>
+</html>
+
+

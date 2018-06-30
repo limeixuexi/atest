@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta charset="utf-8" />
+    <title>叽喳电影网</title>
+    <style type="text/css">
+      *{padding: 0;margin: 0;}
+      body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
+            
+      /*超链接 可在后面覆盖样式*/
+      a{ text-decoration: none;color: #888;}
+      a:hover{color: #333;}
+      
+      /*网站标题*/
+      header{height: 120px; background: #fdb;line-height: 120px;background-image: url(images/menu-bg.jpg);}
+      h1{margin-left: 50px;}
+      .rubberBand{animation-duration: 3s;animation-play-state: running;animation-delay: 2s;}
+      .aa{font-family: 华文隶书;padding-left: 100px;font-size: 30px;color: #f88;}
+      /*导航容器*/
+      #nav{height: 90px; background: #ddd;}
+      /*导航栏*/
+      .header-nav{position: absolute;right: 30px;width: 580px;}
+      .nav-button{ display:inline-block;margin: 20px auto; margin-left: 25px;background: #eee;
+      height: 50px;line-height: 50px;text-align: center;border-radius: 8px;}
+      .nav-button a{font-size: 20px;margin: auto 25px;}
+      .nav-button:after{ clear: both;}
+      .nav-button:hover{background: #333;color: #fff;}
+      .nav-button:hover a{background: #333;color: #fff;}
+      
+      /*当前导航位置*/
+      .active{background: #333;color: #fff;}
+      .active a{background: #333;color: #fff;}
+      
+      /*内容容器*/
+      .container{width:100%; height: 900px;background: #edc;/* background: #edc;*/}
+      
+      /*container里面的样式 */
+      #con1{
+      	width:100%;
+      	height:400px;
+      }
+      #con1 img{
+      	width: 100%;
+      	height: 400px;
+      }
+      #text{
+      	position: absolute;
+      	top:250px;
+      	left:200px;
+      	color:cadetblue;
+      	font-size:50px;
+      	font-weight: bold;
+      }
+      #con2{
+      	width: 34%;
+      	height: 450px;
+      	background:orange;
+      	float:left;
+      	border:5px dotted dodgerblue;
+      	border-radius: 30px;
+      }
+      .span1{
+      	color:white;
+      	font-size: 40px;
+      	font-weight: bold;
+      	position: absolute;
+      	top:650px;
+      	left:140px;
+      }
+      .span2{
+      	color:white;
+      	position: absolute;
+      	top:710px;
+      	left: 20px;
+      }
+      #contact{
+      	position: absolute;
+      	top:800px;
+      	left:100px;
+      	width:25%;
+      	height:180px;
+      	font-size: 25px;
+      	color: white;
+      }
+      .span3 img{
+      	width:20px;
+      	height: 20px;
+      	margin-right:30px;	
+      }
+      #con3{
+      	width: 63%;
+      	height: 450px;
+      	border: 5px dotted dodgerblue;
+      	border-radius: 30px;
+      	/*background: green;*/
+      	float:right;
+      }
+      .span4{
+      	font-size:40px;
+      	font-weight: bold;
+      	margin-left:200px;
+      }
+      #form input{
+      	width:290px;
+      	height:30px;
+      	margin:10px 50px;
+      	border: 2px solid greenyellow;
+      }
+      #form input:nth-of-type(3){
+				width: 700px;
+			} 
+			#form textarea{
+				width: 700px;
+				height: 160px;
+				margin: 10px 50px;
+				line-height: 24px;
+				border:2px solid dodgerblue;
+			}
+			#form>input:last-child{
+				width:700px ;
+				height: 30px;
+				cursor: pointer;
+				border: 2px solid gold;
+				background: #FFFFFF;
+			}
+			#cg,#sb{
+				height:25px;
+				width:700px;
+				margin-left:50px;
+				text-align: center;
+				line-height: 25px;
+				background-color: cornflowerblue;
+				border: 1px solid #FF8888;
+				border-radius: 5px;
+				display: none;
+			}
+      /*.clearfix:{content: "";display: block;clear: both;}*/
+      
+      /*页脚footer*/
+      footer{ background: #eee; color: #444;height: 50px;text-align: center;line-height: 50px;
+      }
+      footer label{margin-right: 50px;}
+    </style>
+  </head>
+  <body>
+    <header><div class="aa rubberBand"><h1>叽喳电影</h1></div></header>
+    <div id="nav">
+    <ul class="header-nav">
+      <li class="nav-button"><a href="/index">首页</a></li>
+      <li class="nav-button"><a href="/moviesee">看看电影</a></li>
+	  <li class="nav-button"><a href="/showpl">留言板</a></li>
+      <li class="nav-button active"><a href="/contect">联系我们</a></li>
+    </ul>
+    </div>
+    <div class="container">
+    <!--内容      -->
+    	<div id="con1">
+    		<img src="images/conbg.jpg" />
+    		<div id="text"> contact with us</div>
+    	</div>
+      
+      <div id="con2">
+      	<span class="span1">联系我们</span>
+      	<span class="span2">如果您遇到问题，或者想对我们提一些建议，请联系我们…</span>
+      	<div id="contact">
+      		<span class="span3"><img src="images/location.png">广从南路12580号</span><br><br>
+      		<span class="span3"><img src="images/phone.png">0000-12580</span><br><br>
+      		<span class="span3"><img src="images/email.png">12580@qq.com</span><br><br>
+      	</div>
+      </div>
+      
+      <div id="con3">
+      	<span class="span4">Send us message</span>
+      	<form id="form" action="#" target="_blank" method="post" >
+								<input type="text" name="name" id="name" value="" placeholder=" 你的姓名"/>
+								<input type="text" name="email" id="email" value="" placeholder=" 你的邮箱"/>
+								<input type="text" name="phone" id="phone" value="" placeholder=" 你的号码"/>
+								<textarea name="message" id="message" placeholder=" 信息"></textarea>
+								<input type="button" id="tijiao" name="tijiao" class="sub" value="发送"/>
+				</form>
+				<div id="cg">发送成功</div>
+				<div id="sb">发送失败</div>
+      </div>  
+    </div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    //Ajax提交表单
+	$("#tijiao").click(function(){
+		$.post("/tijiao",{
+		"name": $("#name").val(),
+            "email": $("#email").val(),
+			"phone": $("#phone").val(),
+			"message": $("#message").val()
+		},function(result){
+			if (result.result == -1) {
+                $("#sb").fadeIn();
+            } else if (result.result == 1) {
+                $("#cg").fadeIn();
+			};
+		});
+	});
+</script>
+    <footer><label>制作方：<a href="#">叽喳.</a></label><a href="#">联系我们</a></footer>
+  </body>
+</html>

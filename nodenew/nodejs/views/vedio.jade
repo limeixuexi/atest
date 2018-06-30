@@ -1,0 +1,30 @@
+//-电影详情播放页，以id值作为播放的依据
+extends ./layout
+
+block content
+  .container
+    .row
+      .col-sm-10
+        embed(src='#{movie.address}', allowfullscreen='true', quality='high', width='1200', height='600', align='middle', allowscriptaccess='always', type='application/x-shockwave-flash')
+
+      .col-sm-10
+        dl.dl-horizontal
+          dt 电影名字
+          dd=movie.title
+          dt 导演
+          dd=movie.doctor
+          dt 国家
+          dd=movie.country
+          dt 语言
+          dd=movie.language
+          dt 简介
+          dd=movie.summary
+      .col-sm-2
+          br
+          br
+          a.btn.btn-primary(href="/admin/list/") 回到看看列表          
+          br
+          br
+          a.btn.btn-primary(href="/moviesee/") 回到看看电影          
+            
+           

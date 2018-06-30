@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*input,textarea{display: block;}*/
+			input{width: 100%;height: 25px;line-height: 25px;}
+			textarea{width: 100%;height: 150px;resize: vertical;}
+			#form1{width: 60%; margin: auto;margin-top: 20px;}
+			table{margin: auto;margin-top: 30px;}
+			th{background: #555;color: #eee}
+			.shadow {position:fixed; width:100%; height:100%; background:#000; opacity:0.7;left:0; top: 0;}
+    	.mod_dialog {overflow-y: auto; padding: 30px;padding-top: 0; width:900px; height:500px; border:1px solid black; background:#eee; position:fixed; left:50%; top:50%; margin-left:-450px; margin-top:-250px}
+    
+		</style>
+	</head>
+	<body>
+			<div id="form1">
+					<form action="?" method="post" enctype="multipart/form-data">
+						标题：<input type="text" name="title" /><br>
+						介绍：<textarea name="intro"></textarea><br>
+						摘要：<input type="text" name="summary"><br>
+						导演：<input type="text" name="director"><br>
+						图片：<input type="file" name="img" /><br>
+					  <input type="submit" value="添加" style="width: 10%;"/>
+					</form>
+				  </div>
+		  <table border="1px solid #333" cellspacing="0" width="90%">
+		  	<tr>
+		  		<th>标题</th>
+		  		<th>介绍</th>
+		  		<!-- <th>摘要</th> -->
+		  		<th>导演</th>
+				<th>图片</th>
+				<th>操作</th>
+			  </tr>
+			  <% for(var i=0 in articles){ %>
+		  	<tr>
+		  		<td width="auto"><%= articles[i].title %></td>
+		  		<td width="50%"><%= articles[i].intro %></td>
+		  		<!-- <td><%= articles[i].summary %></td> -->
+		  		<td><%= articles[i].director %></td>
+		  		<td width="62px">
+					  <img width="60" height="auto" src="<%= articles[i].url %>" alt=""/>
+				</td>
+				<td>
+					<a href="?act=mod&id=<%= articles[i]._id %>">修改</a><br><br>
+					<a href="?act=del&id=<%= articles[i]._id %>">删除</a>
+				</td>
+		  	</tr>
+		  	<% } %>
+		  </table>
+		  <% if(typeof mod_data!='undefined'){ %>
+			<div class="shadow"></div>
+			<div class="mod_dialog">
+				<h4>修改详情：</h4>
+			  <form action="?act=mod" method="post" enctype="multipart/form-data">
+				<input type="text" name="mod_id" value="<%= mod_data._id %>" style="display: none;" />
+				标题：<input type="text" name="title" value="<%= mod_data.title %>" /><br>
+				介绍：<textarea name="intro"><%= mod_data.intro %></textarea><br>
+				摘要：<input type="text" name="summary" value="<%= mod_data.summary %>"/><br>
+				导演：<input type="text" name="director" value="<%= mod_data.director %>"><br>
+				图片：<input type="file" name="img" value="<%= mod_data.url %>" /><br><br>
+				<input type="submit" value="修改"  style="width: 10%;"/>
+				<a href="/admin">取消修改</a>
+			  </form>
+			</div>
+			<% } %>
+	</body>
+</html>	

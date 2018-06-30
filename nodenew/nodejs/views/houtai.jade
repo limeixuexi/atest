@@ -1,0 +1,57 @@
+//-后台录入页，后台人员在此录入数据到数据库
+doctype
+html
+  head
+    meta(charset="utf-8")
+    title #{title}doctype
+html
+  head
+    meta(charset="utf-8")
+    title #{title}
+  body
+    h1 #{title} 
+    .container
+      .row
+        form.form-horizontal(method="post",action="/admin/houtai/new")
+          input(type="hidden",name="movie[_id]",value="#{movie._id}")
+          .from-group
+            label.col-sm-3.control-label(for="inputTitle") 电影名字
+            .col-sm-10
+              input#inputTitle.form-control(type="text",name="movie[title]",value
+                ="#{movie.title}")
+                
+          .from-group
+            label.col-sm-3.control-label(for="inputPoster") 电影海报
+            .col-sm-10
+              input#inputPoster.form-control(type="text",name="movie[poster]",value
+                ="#{movie.poster}")
+          .from-group
+            label.col-sm-3.control-label(for="inputDoctor") 电影导演
+            .col-sm-10
+              input#inputDoctor.form-control(type="text",name="movie[doctor]",value
+                ="#{movie.doctor}")
+          .from-group
+            label.col-sm-3.control-label(for="inputCountry") 国家
+            .col-sm-10
+              input#inputCountry.form-control(type="text",name="movie[country]",value
+                ="#{movie.country}")
+          .from-group
+            label.col-sm-3.control-label(for="inputLanguage") 电影语言
+            .col-sm-10
+              input#inputTitle.form-control(type="text",name="movie[language]",value
+                ="#{movie.language}")
+          .from-group
+            label.col-sm-3.control-label(for="inputSummary") 电影简介
+            .col-sm-10
+              input#inputSummary.form-control(type="text",name="movie[summary]",value
+                ="#{movie.summary}")     
+          .from-group
+            label.col-sm-3.control-label(for="inputAddress") 播放地址
+            .col-sm-10
+              input#inputAddress.form-control(type="text",name="movie[address]",value
+                ="#{movie.address}")
+          br
+          br
+          button.btn.btn-danger.sum(type="summit",) 录入            
+
+          
